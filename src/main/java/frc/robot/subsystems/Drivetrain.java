@@ -15,6 +15,7 @@ package frc.robot.subsystems;
 
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -43,13 +44,14 @@ public class Drivetrain extends SubsystemBase {
     /**
     *
     */
-    //private final static double TICKSPERFOOT= 532;
-    //private final static double FEETPERTICK= 1/TICKSPERFOOT;
+    private final static double TICKSPERFOOT= 532;
+    private final static double FEETPERTICK= 1/TICKSPERFOOT;
     private WPI_TalonSRX frontLeftMotor;
     private WPI_TalonSRX frontRightMotor;
     private WPI_TalonSRX backLeftMotor;
     private WPI_TalonSRX backRightMotor;
     private MecanumDrive mecanumDrive;
+    private AnalogInput ultrasonic;
 
     //private AnalogInput ultrasonic;
     public Drivetrain() {
@@ -67,6 +69,7 @@ public class Drivetrain extends SubsystemBase {
         frontRightMotor.setInverted(true);
         backRightMotor.setInverted(true);
         mecanumDrive= new MecanumDrive(frontLeftMotor,backLeftMotor,frontRightMotor,backRightMotor);
+        ultrasonic=new AnalogInput(0);
     }
     public void ResetEncoders() {
         frontLeftMotor.setSelectedSensorPosition(0);
@@ -75,7 +78,18 @@ public class Drivetrain extends SubsystemBase {
 
     @Override
     public void periodic() {
+        int rawvalue=ultrasonic.getValue();
+        double voltage_scale_factor = 5/RobotController.getVoltage5V();
+        double currentDistanceInches = rawvalue * voltage_scale_factor * 0.0492;
+        double currentDistanceCentimeters = rawvalue * voltage_scale_factor * 0.125;
+        SmartDashboard.putNumber("distance in inches", currentDistanceInches);
+        SmartDashboard.putNumber("distance in centimeters", currentDistanceCentimeters);
         // This method will be called once per scheduler run
+        double ticks = frontLeftMotor.getSelectedSensorPosition();
+        SmartDashboard.putNumber("Front Left Ticks", ticks);
+        ticks = backRightMotor.getSelectedSensorPosition();
+        SmartDashboard.putNumber("Back Right Ticks", ticks);
+    
 
     }
 
@@ -87,6 +101,9 @@ public class Drivetrain extends SubsystemBase {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public double distanceTraveledInFeet () {
+        return backRightMotor.getSelectedSensorPosition()*FEETPERTICK*-1;
+    }
     // Y is forwards, x is strafe
     public void drive(double x,double y,double rotation){
         mecanumDrive.driveCartesian(y, x, rotation);

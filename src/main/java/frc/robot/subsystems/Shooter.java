@@ -84,5 +84,9 @@ public class Shooter extends SubsystemBase {
         ShooterMotor.set(ControlMode.Velocity,percentSpeed*MAXSHOOTERSPEED);
        
     }  
+    public void stop(){
+        ShooterMotor.set(ControlMode.PercentOutput, 0);
+    
+    }
 }
 

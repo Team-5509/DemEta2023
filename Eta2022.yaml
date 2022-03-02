@@ -288,8 +288,8 @@ Children:
           name: Parameters
           validators: null
           value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmSpeed,
-            type: double, value: '-.25'}
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmPosition,
+            type: double, value: '0'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '1'
@@ -311,7 +311,7 @@ Children:
           default: whenPressed
           name: When to Run
           validators: null
-          value: whileHeld
+          value: whenPressed
       Base: Joystick Button
       Name: RunIntakeArmUp
     - Children: []
@@ -325,8 +325,8 @@ Children:
           name: Parameters
           validators: null
           value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmSpeed,
-            type: double, value: '.25'}
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmPosition,
+            type: double, value: '1'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '1'
@@ -348,7 +348,7 @@ Children:
           default: whenPressed
           name: When to Run
           validators: null
-          value: whileHeld
+          value: whenPressed
       Base: Joystick Button
       Name: RunIntakeArmDown
     Properties:
@@ -395,17 +395,17 @@ Children:
         name: Parameters
         validators: null
         value:
-        - !!robotbuilder.data.properties.ParameterDescriptor {name: IntakeArmSpeed,
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: IntakeArmPosition,
           type: double}
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
+        name: Requires, type: Subsystem, validators: null, value: IntakeArm}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id007 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id007
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command

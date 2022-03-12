@@ -77,6 +77,7 @@ public class Shooter extends SubsystemBase {
     // here. Call these from Commands.
     public void shoot(double percentSpeed){
         ShooterMotor.set(ControlMode.PercentOutput, .38 * percentSpeed);
+        SmartDashboard.putNumber("Shooter Power", percentSpeed);
         //ShooterMotor.set(ControlMode.Velocity,percentSpeed*MAXSHOOTERSPEED);
        
     } 

@@ -101,6 +101,10 @@ public class Drivetrain extends SubsystemBase {
     public double distanceTraveledInFeet () {
         return frontLeftMotor.getEncoder().getPosition()*FEETPERTICK*-1;
     }
+
+    public double getDistanceTraveledInFeet(){
+        return frontLeftMotor.getEncoder().getPosition() / -3.0;
+    }
     // Y is forwards, x is strafe
     public void drive(double x,double y,double rotation){
         mecanumDrive.driveCartesian(y, x, rotation);

@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -53,7 +54,7 @@ public class Drivetrain extends SubsystemBase {
     private CANSparkMax backLeftMotor;
     private CANSparkMax backRightMotor;
     private MecanumDrive mecanumDrive;
-    private AnalogInput ultrasonic;
+    private AHRS navX;
 
     //private AnalogInput ultrasonic;
     public Drivetrain() {
@@ -69,7 +70,7 @@ public class Drivetrain extends SubsystemBase {
         frontRightMotor.setInverted(true);
         backRightMotor.setInverted(true);
         mecanumDrive= new MecanumDrive(frontLeftMotor,backLeftMotor,frontRightMotor,backRightMotor);
-        ultrasonic=new AnalogInput(0);
+        navX= new AHRS();
     }
     public void ResetEncoders() {
         frontLeftMotor.getEncoder().setPosition(0);
@@ -77,15 +78,16 @@ public class Drivetrain extends SubsystemBase {
 
     @Override
     public void periodic() {
-        int rawvalue=ultrasonic.getValue();
-        double voltage_scale_factor = 5/RobotController.getVoltage5V();
-        double currentDistanceInches = rawvalue * voltage_scale_factor * 0.0492;
-        double currentDistanceCentimeters = rawvalue * voltage_scale_factor * 0.125;
-        SmartDashboard.putNumber("distance in inches", currentDistanceInches);
-        SmartDashboard.putNumber("distance in centimeters", currentDistanceCentimeters);
         // This method will be called once per scheduler run
         double ticks = frontLeftMotor.getEncoder().getPosition();
-        SmartDashboard.putNumber("Front Left Ticks", ticks);
+        SmartDashboard.putNumber("Drivetrain::ticks", ticks);
+        double roll = navX.getRoll();
+        double pitch = navX.getPitch();
+        double yaw = navX.getYaw();
+        SmartDashboard.putNumber("Drivetrain::roll", roll);
+        SmartDashboard.putNumber("Drivetrain::pitch", pitch);
+        SmartDashboard.putNumber("Drivetrain::yaw", yaw);
+
     
 
     }

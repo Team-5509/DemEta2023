@@ -145,7 +145,7 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: null
-          value: '0'
+          value: '1'
         Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: [CTREPCM, REVPH]
           default: CTREPCM
@@ -370,8 +370,8 @@ Children:
           name: Parameters
           validators: null
           value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmPosition,
-            type: double, value: '0'}
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmUp,
+            type: boolean, value: 'true'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '1'
@@ -407,8 +407,8 @@ Children:
           name: Parameters
           validators: null
           value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmPosition,
-            type: double, value: '1'}
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: IntakeArmUp,
+            type: boolean, value: 'false'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '1'
@@ -551,8 +551,7 @@ Children:
         name: Parameters
         validators: null
         value:
-        - !!robotbuilder.data.properties.ParameterDescriptor {name: IntakeArmPosition,
-          type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: IntakeArmUp, type: boolean}
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -647,10 +646,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: AirCompresser}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id007 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id007
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -775,7 +774,7 @@ Properties:
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
   Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Robotics\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\Kanar\'}
+    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\Robotics\Documents'}
   Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Robotics\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: 'C:\Users\Robotics\Documents'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,

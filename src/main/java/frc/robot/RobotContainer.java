@@ -117,12 +117,12 @@ runBallFeedButton.whileHeld(new RunBallFeed(0.5, m_ballFeed) ,true);
     SmartDashboard.putData("RunBallFeedButton",new RunBallFeed(0.5, m_ballFeed) );
 
 final JoystickButton runIntakeArmDown = new JoystickButton(coPilotJoystick, 10);        
-runIntakeArmDown.whenPressed(new RunIntakeArm(1, m_intakeArm) ,true);
-    SmartDashboard.putData("RunIntakeArmDown",new RunIntakeArm(1, m_intakeArm) );
+runIntakeArmDown.whenPressed(new RunIntakeArm(false, m_intakeArm) ,true);
+    SmartDashboard.putData("RunIntakeArmDown",new RunIntakeArm(false, m_intakeArm) );
 
 final JoystickButton runIntakeArmUp = new JoystickButton(coPilotJoystick, 12);        
-runIntakeArmUp.whenPressed(new RunIntakeArm(0, m_intakeArm) ,true);
-    SmartDashboard.putData("RunIntakeArmUp",new RunIntakeArm(0, m_intakeArm) );
+runIntakeArmUp.whenPressed(new RunIntakeArm(true, m_intakeArm) ,true);
+    SmartDashboard.putData("RunIntakeArmUp",new RunIntakeArm(true, m_intakeArm) );
 
 final JoystickButton runOuttakeButton = new JoystickButton(coPilotJoystick, 11);        
 runOuttakeButton.whileHeld(new RunIntake(-.5, m_intake) ,true);

@@ -103,6 +103,9 @@ public class Drivetrain extends SubsystemBase {
     public double distanceTraveledInFeet () {
         return frontLeftMotor.getEncoder().getPosition()*FEETPERTICK*-1;
     }
+    public double getHeading(){
+        return navX.getRoll();
+    }
 
     public double getDistanceTraveledInFeet(){
         return frontLeftMotor.getEncoder().getPosition() / 3.0;

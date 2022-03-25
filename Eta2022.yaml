@@ -145,7 +145,7 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: null
-          value: '1'
+          value: '3'
         Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: [CTREPCM, REVPH]
           default: CTREPCM
@@ -157,7 +157,7 @@ Children:
           default: '0'
           name: Forward Channel (Solenoid)
           validators: [Solenoid]
-          value: '0'
+          value: '2'
       Base: Double Solenoid
       Name: Double Solenoid 1
     Properties:
@@ -262,7 +262,7 @@ Children:
           validators: null
           value:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: percentSpeed,
-            type: double, value: '1.0'}
+            type: double, value: '.38'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '1'
@@ -673,9 +673,13 @@ Children:
         default: []
         name: Parameter presets
         validators: null
-        value: []
+        value:
+        - !!robotbuilder.data.properties.ParameterSet
+          name: FullFoward
+          parameters:
+          - {name: percentSpeed, type: double, value: '1'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: false}
+        name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: ShootAtPercentSpeed
   - Children: []

@@ -47,7 +47,7 @@ public class Drivetrain extends SubsystemBase {
     /**
     *
     */
-    private final static double TICKSPERFOOT= 532;
+    private final static double TICKSPERFOOT= 4.081;
     private final static double FEETPERTICK= 1/TICKSPERFOOT;
     private CANSparkMax frontLeftMotor;
     private CANSparkMax frontRightMotor;
@@ -101,15 +101,12 @@ public class Drivetrain extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public double distanceTraveledInFeet () {
-        return frontLeftMotor.getEncoder().getPosition()*FEETPERTICK*-1;
+        return frontLeftMotor.getEncoder().getPosition()*FEETPERTICK;
     }
     public double getHeading(){
         return navX.getRoll();
     }
 
-    public double getDistanceTraveledInFeet(){
-        return frontLeftMotor.getEncoder().getPosition() / 3.0;
-    }
     // Y is forwards, x is strafe
     public void drive(double x,double y,double rotation){
         mecanumDrive.driveCartesian(y, x, rotation);

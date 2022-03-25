@@ -63,6 +63,7 @@ public class ClaytonDrive extends CommandBase {
         double deadband = .2;
         double finnesseValue=1;
         int delinearization = 3;
+        int delinearizationZ = 5;
         if (Math.abs(x) < deadband){
             x = 0;
         }
@@ -74,7 +75,7 @@ public class ClaytonDrive extends CommandBase {
         }
         x = Math.pow(x,delinearization);
         y = Math.pow(y,delinearization);
-        rotation = Math.pow(rotation,delinearization);
+        rotation = Math.pow(rotation,delinearizationZ);
         if (halfFinesseMode){
             finnesseValue*=.5;
         }

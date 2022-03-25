@@ -52,9 +52,9 @@ public class Shooter extends SubsystemBase {
         ShooterMotor= new WPI_TalonSRX(4);
         ShooterMotor.configFactoryDefault();
         ShooterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
-        ShooterMotor.config_kF(0, 3.0);
+        ShooterMotor.config_kF(0, 0.007);
         //ShooterMotor.config_kP(0, .1);
-        ShooterMotor.config_kI(0, .01);
+        ShooterMotor.config_kI(0, .0000035);
         ShooterMotor.setInverted(true);
     }
 
@@ -65,6 +65,10 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("Shooter velocity", shooterVelocity);
         double error = ShooterMotor.getClosedLoopError(0);
         SmartDashboard.putNumber("Shooter Error", error);
+        double desiredVelocity = ShooterMotor.getClosedLoopTarget();
+        SmartDashboard.putNumber("Shooter desiredVelocity", desiredVelocity);
+        boolean atTarget = Math.abs(error) < 3000;
+        SmartDashboard.putBoolean("shooter ready", atTarget);
     }
 
     @Override
@@ -76,9 +80,9 @@ public class Shooter extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void shoot(double percentSpeed){
-        ShooterMotor.set(ControlMode.PercentOutput,percentSpeed);
+       //ShooterMotor.set(ControlMode.PercentOutput,percentSpeed);
         SmartDashboard.putNumber("Shooter Power", percentSpeed);
-        //ShooterMotor.set(ControlMode.Velocity,percentSpeed*MAXSHOOTERSPEED);
+        ShooterMotor.set(ControlMode.Velocity,percentSpeed*MAXSHOOTERSPEED);
        
     } 
     public void stop(){

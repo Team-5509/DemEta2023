@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,8 +21,11 @@ public class DriveXFeet extends PIDCommand{
         
     }
     @Override
+
+    
     public void initialize (){
       drivetrain.ResetEncoders();
+      drivetrain.setMode(IdleMode.kBrake);
     }
     @Override
     public boolean isFinished() {

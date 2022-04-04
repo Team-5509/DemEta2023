@@ -7,14 +7,15 @@ import frc.robot.commands.RunBallFeed;
 import frc.robot.commands.ShootAtPercentSpeed;
 import frc.robot.subsystems.*;
 
-public class DriveAndShoot extends SequentialCommandGroup {
-    public DriveAndShoot(Drivetrain drivetrain, Shooter shooter, BallFeed ballFeed){
+public class DriveAndShootHigh extends SequentialCommandGroup {
+    public DriveAndShootHigh(Drivetrain drivetrain, Shooter shooter, BallFeed ballFeed){
         addCommands(
-            new DriveXFeet(-6, drivetrain),
+            new DriveXFeet(-5.5, drivetrain),
             race(
-                (new ShootAtPercentSpeed(1, shooter)).withTimeout(5),
+                (new ShootAtPercentSpeed(0.863, shooter)).withTimeout(5),
                 (new WaitCommand(2)).andThen(
-                    (new RunBallFeed(1, ballFeed)).withTimeout(2))
+                    (new RunBallFeed(0.5, ballFeed)).withTimeout(2))
+                    
             )
         );
     }

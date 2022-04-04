@@ -21,6 +21,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -75,12 +76,27 @@ public class Drivetrain extends SubsystemBase {
     public void ResetEncoders() {
         frontLeftMotor.getEncoder().setPosition(0);
     }
+    public void setMode(IdleMode i){
+        frontLeftMotor.setIdleMode(i);
+        frontRightMotor.setIdleMode(i);
+        backLeftMotor.setIdleMode(i);
+        backRightMotor.setIdleMode(i);
+    }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        double ticks = frontLeftMotor.getEncoder().getPosition();
-        SmartDashboard.putNumber("Drivetrain::ticks", ticks);
+        //double ticks = frontLeftMotor.getEncoder().getPosition();
+        //SmartDashboard.putNumber("Drivetrain::ticks", ticks);
+        double FLTicks = frontLeftMotor.getEncoder().getPosition();
+        SmartDashboard.putNumber("Drivetrain::FLticks", FLTicks);
+        double FRTicks = frontRightMotor.getEncoder().getPosition();
+        SmartDashboard.putNumber("Drivetrain::FRticks", FRTicks);
+        double BLTicks = backLeftMotor.getEncoder().getPosition();
+        SmartDashboard.putNumber("Drivetrain::BLticks", BLTicks);
+        double BRTicks = backRightMotor.getEncoder().getPosition();
+        SmartDashboard.putNumber("Drivetrain::BRticks", BRTicks);
+
         double roll = navX.getRoll();
         double pitch = navX.getPitch();
         double yaw = navX.getYaw();

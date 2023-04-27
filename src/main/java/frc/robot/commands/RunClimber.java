@@ -58,6 +58,7 @@ public class RunClimber extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        /*
         Joystick j = RobotContainer.getInstance().getClimberJoystick();
         double leftSpeed = 0;
         double rightSpeed = 0;
@@ -86,23 +87,24 @@ public class RunClimber extends CommandBase {
 // stick up all the way is -1
 // stick down all the way is 1
 
-        if(j.getRawAxis(5)< -0.5){
+        /*if(j.getRawAxis(5)< -0.5){
             rightSpeed = UPSPEED;
         }
         else if(j.getRawAxis(5) > 0.5){
             rightSpeed = DOWNSPEED;
-        }
+        }*/
         /*
          if(j.getRawAxis(10)< -0.5){
             rightSpeed = UPSPEED;
         }
         else if(j.getRawAxis(10) > 0.5){
             rightSpeed = DOWNSPEED;
-        }
-        */
+        }*/
+        /*
         //when you're more than past half way up or down on the right stick
 
-        m_climber.run(leftSpeed, rightSpeed);
+        m_climber.run(leftSpeed, rightSpeed);*/
+        
     }
 
     // Called once the command ends or is interrupted.

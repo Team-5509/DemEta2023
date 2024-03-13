@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
-import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkMax.*;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
